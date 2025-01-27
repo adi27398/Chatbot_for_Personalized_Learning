@@ -1,0 +1,21 @@
+
+version: "3.1"
+stories:
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - feedback: hello
+  - intent: greet
+  - action: utter_greet
+  - intent: udemy_course_request
+    entities:
+    - topic: python
+  - slot_was_set:
+    - topic: python
+  - slot_was_set:
+    - feedback: show me udemy courses on python
+  - action: action_generate_content
+  - slot_was_set:
+    - topic: python
+  - action: utter_ask_video

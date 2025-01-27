@@ -1,0 +1,85 @@
+version: '3.1'
+intents:
+- affirm
+- ask_for_help
+- ask_motivation
+- bot_challenge
+- deny
+- goodbye
+- greet
+- provide_feedback
+- tell_joke
+- tell_trivia
+- topic
+- udemy_course_request
+- who_created_you
+entities:
+- topic
+- course_topic
+slots:
+  topic:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: topic
+  keywords:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  feedback:
+    type: text
+    mappings:
+    - type: from_text
+  course_topic:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: custom
+responses:
+  utter_greet:
+  - text: Hello! I am an AI assistant. How can I help you today?
+  utter_ask_topic:
+  - text: What topic would you like to learn about?
+  utter_ask_video:
+  - text: Would you like to see some videos related to {topic}?
+  utter_default:
+  - text: I'm sorry, I didn't understand that. Could you please rephrase?
+  utter_goodbye:
+  - text: Goodbye! Feel free to come back anytime.
+  utter_iamabot:
+  - text: I am an AI assistant.
+  utter_more_info:
+  - text: If there is anything more you want to learn, please tell me.
+  utter_creator:
+  - text: I was created by Aditya.
+  utter_joke:
+  - text: Why don't scientists trust atoms? Because they make up everything!
+  - text: I told my computer I needed a break, and now it won’t stop sending me KitKats.
+  utter_trivia:
+  - text: Did you know that honey never spoils? Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still edible!
+  - text: Bananas are berries, but strawberries aren't!
+  utter_motivation:
+  - text: Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful. - Albert Schweitzer
+  - text: The only way to do great work is to love what you do. - Steve Jobs
+  utter_ask_feedback:
+  - text: What feedback would you like to provide?
+  utter_thank_feedback:
+  - text: Thank you for your feedback! I'll use it to improve.
+  utter_feedback_error:
+  - text: I couldn't capture your feedback. Could you please try again?
+  utter_ask_course_topic:
+  - text: Please specify the topic you want courses about.
+  utter_no_courses:
+  - text: Sorry, I couldn't find any courses on {course_topic}.
+actions:
+- utter_ask_video
+- utter_greet
+- action_generate_content
+- action_fetch_youtube_videos
+- action_collect_feedback
+- action_get_courses
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,30 @@
+version: "3.1"
+
+rules:
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Say 'I am created by Aditya' anytime the user challenges
+  steps:
+  - intent: who_created_you
+  - action: utter_creator
+
+- rule: Ask for feedback
+  steps:
+  - intent: provide_feedback
+  - action: utter_ask_feedback
+
+- rule: Collect feedback after asking
+  steps:
+  - action: utter_ask_feedback
+  - intent: provide_feedback
+  - action: action_collect_feedback
+
+
